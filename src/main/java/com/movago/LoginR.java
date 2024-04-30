@@ -4,6 +4,8 @@
  */
 package com.movago;
 
+import com.movago.forms.SignUpForm;
+
 /**
  *
  * @author Arca
@@ -121,7 +123,8 @@ public class LoginR extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        dashboard dashboard = new dashboard();
+        dashboard.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
@@ -129,7 +132,8 @@ public class LoginR extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        SignUpForm signUpForm = new SignUpForm();
+        signUpForm.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
 
