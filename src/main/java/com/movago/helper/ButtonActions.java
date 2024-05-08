@@ -5,12 +5,17 @@
 package com.movago.helper;
 
 import com.movago.connection.DatabaseConnection;
+import com.movago.dashboard;
 import com.movago.forms.SignUpForm;
 import com.movago.forms.createTripForm;
+import com.movago.startFrame;
 import java.awt.Component;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -56,17 +61,55 @@ public class ButtonActions {
     }
     
     public void createTripAction (String titleString ,int participantsCount, String fromString, String firstCityString, String secondCityString,
-            String thirdCityString, String accomodationString, String accomodation2String, String accomodation3String, String dateString, String date2String, String date3String,
-            long budget, long budget2, long budget3, createTripForm form){
+            String thirdCityString, String accomodationString, String accomodation2String, String accomodation3String,String firstDateString, String dateString, String date2String, String date3String,
+            double budget, double budget2, double budget3, createTripForm form){
         try {
             if(!titleString.isEmpty() && !fromString.isEmpty() && !firstCityString.isEmpty() && !accomodationString.isEmpty() && !dateString.isEmpty()){
                 Connection con = DatabaseConnection.getDataSource().getConnection();
                 Statement s = con.createStatement();
-                //s.executeUpdate("INSERT INTO movago.triptable (titleString, participantsCount, fromString, firstCityString, secondCityString, thirdCityString, accomodationString, accomodation2String, accomodation3String, dateString, date2String, date3String, budget, budget2, budget3)"
-                  //      + "VALUES ('"++"', '"++"','"++"','"++"','"++"','"++"')");
+                s.executeUpdate("INSERT INTO movago.triptable (title, participantCount, `from`, firstCity, secondCity, thirdCity, accomodation, accomodation2, accomodation3, firstDate, `date`, date2, date3, budget, budget2, budget3) " +
+                                "VALUES ('"+titleString+"', '"+participantsCount+"','"+fromString+"','"+firstCityString+"','"+secondCityString+"','"+thirdCityString+"', '"+accomodationString+"', '"+accomodation2String+"', '"+accomodation3String+"', '"+firstDateString+"', '"+dateString+"', '"+date2String+"', '"+date3String+"', '"+budget+"', '"+budget2+"', '"+budget3+"')");
                 JOptionPane.showMessageDialog(form, "You successfully created a trip!", "System Message", JOptionPane.INFORMATION_MESSAGE);
+                
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
+            System.out.println(e);
         }
     }
+    
+public void signIn(String username, String password, JLabel warningLabel,  startFrame form) {
+    try {
+        Connection con = DatabaseConnection.getDataSource().getConnection();
+        String sql = "SELECT password FROM movago.usertable WHERE username = ?";
+        String warningMessage = "";
+        PreparedStatement p = con.prepareStatement(sql);
+        p.setString(1, username);
+        ResultSet rs = p.executeQuery();
+        
+        if (rs.next()) { // Move the cursor to the first row
+            String storedPassword = rs.getString("password");
+            System.out.println(storedPassword + "   " + password);
+            
+            if (storedPassword.equals(password)) {
+                JOptionPane.showMessageDialog(form, "Welcome to Voyago");
+                form.dispose();
+                dashboard dashboard = new dashboard();
+                dashboard.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(form, "Incorrect password please try again.");
+                warningLabel.setText("Incorrect password please try again.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(form, "Username not found please try again or sign up.");
+            warningLabel.setText("Username not found please try again or sign up.");
+        }
+        
+        rs.close();
+        p.close();
+        con.close();
+    } catch (SQLException e) {
+        System.out.println(e);
+    }
+}
+
 }
