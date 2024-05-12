@@ -4,6 +4,9 @@
  */
 package com.movago.forms;
 
+import com.movago.User;
+import com.movago.helper.ButtonActions;
+import java.text.SimpleDateFormat;
 import java.sql.Date;
 
 /**
@@ -11,11 +14,15 @@ import java.sql.Date;
  * @author Arca
  */
 public class createTripForm extends javax.swing.JPanel {
-
+    User user;
     /**
      * Creates new form createTripForm
      */
     public createTripForm() {
+        initComponents();
+    }
+    public createTripForm(User user) {
+        this.user = user;
         initComponents();
     }
 
@@ -66,6 +73,10 @@ public class createTripForm extends javax.swing.JPanel {
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         createTripButton = new javax.swing.JButton();
+        firstDateChooser = new com.toedter.calendar.JDateChooser();
+
+        jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
+        jScrollPane1.setHorizontalScrollBar(null);
 
         TitleLabel.setText("Title:");
 
@@ -181,6 +192,12 @@ public class createTripForm extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(TitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(titleTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 521, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(createTripButton, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(fromLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1)
@@ -190,29 +207,29 @@ public class createTripForm extends javax.swing.JPanel {
                             .addComponent(jLabel5)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(fromTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(city1)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(city2)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(city3))
+                                .addComponent(accomodationJTextField)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(cityTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(132, 132, 132))
+                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(budgetTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cityTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cityTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(budgetTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(accomodation2JTextField))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(city1)
+                                .addComponent(fromTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(city2)
-                                .addGap(18, 18, 18)
-                                .addComponent(city3))
-                            .addComponent(accomodationJTextField)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(cityTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(132, 132, 132))
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(budgetTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cityTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cityTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(budgetTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(accomodation2JTextField)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(TitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(titleTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 583, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(firstDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(participantsCountLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -231,11 +248,7 @@ public class createTripForm extends javax.swing.JPanel {
                             .addComponent(budgetTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jDateChooser3, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(accomodation3JTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(406, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(createTripButton, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
+                .addContainerGap(332, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -243,15 +256,18 @@ public class createTripForm extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(titleTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(titleTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(createTripButton))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(participantsCountLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(participantsCountComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(fromLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fromTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(firstDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(fromLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(fromTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -308,9 +324,7 @@ public class createTripForm extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(budgetTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel23))
-                .addGap(28, 28, 28)
-                .addComponent(createTripButton)
-                .addContainerGap(305, Short.MAX_VALUE))
+                .addContainerGap(360, Short.MAX_VALUE))
         );
 
         jScrollPane1.setViewportView(jPanel1);
@@ -321,14 +335,15 @@ public class createTripForm extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 858, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 682, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 544, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -369,8 +384,10 @@ public class createTripForm extends javax.swing.JPanel {
     }//GEN-LAST:event_titleTextFieldActionPerformed
 
     private void createTripButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createTripButtonActionPerformed
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        
         String titleString = titleTextField.getText();
-        int participantsCount = (int) participantsCountComboBox.getSelectedItem();
+        double participantsCount = Double.parseDouble(participantsCountComboBox.getSelectedItem().toString());
         String fromString = fromTextField.getText();
         String firstCityString = cityTextField1.getText();
         String secondCityString = cityTextField2.getText();
@@ -378,15 +395,37 @@ public class createTripForm extends javax.swing.JPanel {
         String accomodationString = accomodationJTextField.getText();
         String accomodation2String = accomodation2JTextField.getText();
         String accomodation3String = accomodation3JTextField.getText();
-        String dateString = jDateChooser1.getDateFormatString();
-        String date2String = jDateChooser2.getDateFormatString();
-        String date3String = jDateChooser3.getDateFormatString();
-        long budget = Long.parseLong(budgetTextField1.getText());
-        long budget2 = Long.parseLong(budgetTextField2.getText());
-        long budget3 = Long.parseLong(budgetTextField3.getText());
         
         
         
+        java.util.Date firstDate = firstDateChooser.getDate();
+        Date sqlfirstDate = new java.sql.Date(firstDate.getTime());
+        
+        java.util.Date date2 = jDateChooser2.getDate();
+        Date sqlDate2 = new java.sql.Date(date2.getTime());
+        
+        java.util.Date date = jDateChooser1.getDate();
+        Date sqlDate = new java.sql.Date(date.getTime());
+        
+        java.util.Date date3 = jDateChooser3.getDate();
+        Date sqlDate3 = new java.sql.Date(date3.getTime());
+        
+        long budget = 0;
+        long budget2 = 0;
+        long budget3 = 0;
+
+        if (!budgetTextField1.getText().isEmpty()) {
+            budget = Long.parseLong(budgetTextField1.getText());
+        }
+        if (!budgetTextField2.getText().isEmpty()) {
+            budget2 = Long.parseLong(budgetTextField2.getText());
+        }
+        if(!budgetTextField3.getText().isEmpty()){
+            budget3 = Long.parseLong(budgetTextField3.getText());
+        }
+        ButtonActions bAction = new ButtonActions();
+        bAction.createTripAction(titleString,user.getUserName(), participantsCount, fromString, firstCityString, secondCityString, thirdCityString, accomodationString, accomodation2String, accomodation3String, sqlfirstDate, sqlDate, sqlDate2, sqlDate3, budget, budget2, budget3, this);
+        //bAction.createTripAction(titleString, PROPERTIES, titleString, titleString, titleString, titleString, titleString, titleString, titleString, titleString, titleString, titleString, titleString, HEIGHT, WIDTH, WIDTH, this);     
     }//GEN-LAST:event_createTripButtonActionPerformed
 
     private void participantsCountComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_participantsCountComboBoxActionPerformed
@@ -411,6 +450,7 @@ public class createTripForm extends javax.swing.JPanel {
     private javax.swing.JTextField cityTextField2;
     private javax.swing.JTextField cityTextField3;
     private javax.swing.JButton createTripButton;
+    private com.toedter.calendar.JDateChooser firstDateChooser;
     private javax.swing.JLabel fromLabel;
     private javax.swing.JTextField fromTextField;
     private com.toedter.calendar.JDateChooser jDateChooser1;

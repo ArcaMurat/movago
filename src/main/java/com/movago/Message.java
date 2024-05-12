@@ -1,3 +1,6 @@
+package com.movago;
+
+import com.movago.User;
 import java.util.Date;
 
 public class Message {

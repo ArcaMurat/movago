@@ -21,7 +21,7 @@ public class DatabaseConnection {
         config.setJdbcUrl("jdbc:mysql://localhost:3306/mysql");
         config.setUsername("root");
         config.setPassword("Rootroot");
-        config.setMaximumPoolSize(10);
+        config.setMaximumPoolSize(50);
         
         DATASOURCE = new HikariDataSource(config);
     }

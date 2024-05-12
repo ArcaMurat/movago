@@ -6,18 +6,76 @@ package com.movago.forms;
 
 import com.movago.FormManager;
 import com.movago.MainForm;
+import com.movago.User;
+import com.movago.connection.DatabaseConnection;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Date;
 
 /**
  *
  * @author Arca
  */
 public class homePanel extends javax.swing.JPanel {
+    User user;
 
     /**
      * Creates new form homePanel
      */
     public homePanel() {
+        try {
         initComponents();
+        Connection con = DatabaseConnection.getDataSource().getConnection();
+        String sql = "SELECT title, budget, date FROM movago.triptable";
+        String warningMessage = "";
+        
+        PreparedStatement p = con.prepareStatement(sql);
+        ResultSet rs = p.executeQuery();
+        
+        while (rs.next()) {
+            // title, budget, and date are columns in the table
+            String title = rs.getString("title");
+            double budget = rs.getDouble("budget");
+            String date = rs.getString("date");
+            
+            // filling textFields with retrieved data
+            titleEditable.setText(title);
+            budgetEditable.setText(budget + "");
+            dateEditable.setText(date);
+        }
+            
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+    public homePanel(User user, MainForm mainForm) {
+        this.user = user;
+        try {
+        initComponents();
+        Connection con = DatabaseConnection.getDataSource().getConnection();
+        String sql = "SELECT title, budget, date FROM movago.triptable";
+        String warningMessage = "";
+        
+        PreparedStatement p = con.prepareStatement(sql);
+        ResultSet rs = p.executeQuery();
+        
+        while (rs.next()) {
+            // title, budget, and date are columns in the table
+            String title = rs.getString("title");
+            double budget = rs.getDouble("budget");
+            String date = rs.getString("date");
+            
+            // filling textFields with retrieved data
+            titleEditable.setText(title);
+            budgetEditable.setText(budget + "");
+            dateEditable.setText(date);
+        }
+            
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
     }
 
     /**
@@ -29,21 +87,29 @@ public class homePanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        createATripButton = new javax.swing.JButton();
+        joinATripButton = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        titleEditable = new javax.swing.JLabel();
+        budgetEditable = new javax.swing.JLabel();
+        dateEditable = new javax.swing.JLabel();
 
-        jButton1.setText("Create a Trip");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        createATripButton.setText("Create a Trip");
+        createATripButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                createATripButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Join a Trip");
+        joinATripButton.setText("Join a Trip");
+        joinATripButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                joinATripButtonActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Budget: ");
 
@@ -56,23 +122,39 @@ public class homePanel extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(79, 79, 79)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(480, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(79, 79, 79)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(titleEditable, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(67, 67, 67)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(budgetEditable, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dateEditable, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(38, 38, 38)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(94, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(titleEditable))
+                .addGap(33, 33, 33)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(budgetEditable)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(dateEditable)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -84,9 +166,9 @@ public class homePanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(createATripButton, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(31, 31, 31)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(joinATripButton, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(151, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -94,27 +176,34 @@ public class homePanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(createATripButton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(joinATripButton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(15, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        createTripForm createTripForm = new createTripForm();
+    private void createATripButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createATripButtonActionPerformed
         MainForm mainForm = FormManager.getMainFormInstance();
-        mainForm.displayForm(new createTripForm());
-    }//GEN-LAST:event_jButton1ActionPerformed
+        mainForm.displayForm(new createTripForm(user));
+    }//GEN-LAST:event_createATripButtonActionPerformed
+
+    private void joinATripButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_joinATripButtonActionPerformed
+        MainForm mainForm = FormManager.getMainFormInstance();
+        mainForm.displayForm(new joinATrip(user, mainForm));
+    }//GEN-LAST:event_joinATripButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel budgetEditable;
+    private javax.swing.JButton createATripButton;
+    private javax.swing.JLabel dateEditable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton joinATripButton;
+    private javax.swing.JLabel titleEditable;
     // End of variables declaration//GEN-END:variables
 }
