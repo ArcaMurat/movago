@@ -33,11 +33,13 @@ public class Trip {
     double budget2;
     double budget3;
     
+    int currentCount;
+    
 
 
     public Trip(String title, String ownerName, int participantsLimit, String from,
             String startDate, String city, String city2, String city3, String accommodation, String accommodation2,
-            String accommodation3,Date firstDate, Date date, Date date2, Date date3,double budget, double budget2, double budget3) {
+            String accommodation3,Date firstDate, Date date, Date date2, Date date3,double budget, double budget2, double budget3,int currentCount) {
         
         this.ownerName = ownerName;
         this.title = title;
@@ -62,6 +64,8 @@ public class Trip {
         this.budget = budget;
         this.budget2 = budget2;
         this.budget3 = budget3;
+        
+        this.currentCount = currentCount;
     }
     
     
@@ -202,6 +206,10 @@ public class Trip {
 
     public void setBudget3(double budget3) {
         this.budget3 = budget3;
+    }
+    
+    public int getcurrentCount(){
+        return currentCount;
     }
 
     /**
