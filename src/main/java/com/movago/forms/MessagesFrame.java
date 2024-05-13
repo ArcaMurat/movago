@@ -5,26 +5,16 @@
 package com.movago.forms;
 
 import com.movago.MainForm;
-import com.movago.Message;
 import com.movago.User;
 import com.movago.connection.DatabaseConnection;
 import com.movago.helper.ButtonActions;
 import com.movago.startFrame;
-import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 import java.sql.ResultSet;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
 
 /**
  *
@@ -42,12 +32,6 @@ public class MessagesFrame extends javax.swing.JFrame {
         initComponents();
         nameLabel.setText(user.getUserName());
         retrieveReceivers();
-        
-
-
-        
-
-        
     }
     
     public MessagesFrame(){
@@ -74,10 +58,8 @@ public class MessagesFrame extends javax.swing.JFrame {
         receiverNameLabel = new javax.swing.JLabel();
         textField = new javax.swing.JTextField();
         sendMessageButton = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jPanel1 = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         logoHomeButton.setText("Voyago");
         logoHomeButton.addActionListener(new java.awt.event.ActionListener() {
@@ -88,6 +70,7 @@ public class MessagesFrame extends javax.swing.JFrame {
 
         nameLabel.setText("test");
 
+        jButton2.setText("Sign Out");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -121,40 +104,26 @@ public class MessagesFrame extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
-
-        GridBagConstraints gbc = new GridBagConstraints();
-        jPanel1.setLayout(new java.awt.GridBagLayout());
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.anchor = GridBagConstraints.WEST;
-        jPanel1.add(nameLabel, gbc);
-        jScrollPane1.setViewportView(jPanel1);
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(receiverNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 757, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textField, javax.swing.GroupLayout.PREFERRED_SIZE, 757, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(sendMessageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 57, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1))
-                .addContainerGap())
+                        .addGap(74, 74, 74)
+                        .addComponent(textField))
+                    .addComponent(receiverNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 757, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(sendMessageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(63, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(receiverNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textField, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(sendMessageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -171,8 +140,8 @@ public class MessagesFrame extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(nameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(leftSidePanelLayout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(logoHomeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(receiversjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -184,10 +153,10 @@ public class MessagesFrame extends javax.swing.JFrame {
             .addGroup(leftSidePanelLayout.createSequentialGroup()
                 .addGroup(leftSidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(leftSidePanelLayout.createSequentialGroup()
-                        .addGroup(leftSidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(leftSidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(logoHomeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(receiversjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -215,87 +184,37 @@ public class MessagesFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     
-    public void retrieveReceivers() {
-        try (Connection con = DatabaseConnection.getDataSource().getConnection();
-                Statement s = con.createStatement();) {
-            String sql = "SELECT username FROM movago.usertable";
-            ResultSet rs = s.executeQuery(sql);
+public void retrieveReceivers() {
+    try (Connection con = DatabaseConnection.getDataSource().getConnection();
+            Statement s = con.createStatement();) {
+        String sql = "SELECT username FROM movago.usertable";
+        ResultSet rs = s.executeQuery(sql);
 
-            receiversjPanel.removeAll(); // Clear existing buttons before adding new ones
+        receiversjPanel.removeAll(); // Clear existing buttons before adding new ones
 
-            while (rs.next()) {
-                String username = rs.getString("username");
+        while (rs.next()) {
+            String username = rs.getString("username");
 
-                JButton j = new JButton(username);
-                Dimension buttonSize = new Dimension(225, 50);
-                j.setMinimumSize(buttonSize);
-                j.setPreferredSize(buttonSize);
-                j.setMaximumSize(buttonSize);
-                j.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        receiverNameLabel.setText(username);
-                        displayMessages(username);
-                        System.out.println(username);
-                        jPanel1.validate();
-                        jPanel1.repaint();
-                    }
-                });
-                receiversjPanel.add(j);
-            }
-
-            receiversjPanel.revalidate(); // Refresh the panel layout
-            receiversjPanel.repaint(); // Repaint the panel to show new buttons
-
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
-    }
-    
-    public void displayMessages(String receiverName){
-        jPanel1.removeAll();
-        ArrayList<Message> messages = new ArrayList<>();
-        try {
-            Connection con = DatabaseConnection.getDataSource().getConnection();
-            Statement s = con.createStatement();
-            String sql = "SELECT sender, receiver, message FROM movago.messagetable " +
-                         "WHERE (sender = '" + user.getUserName() + "' AND receiver = '" + receiverName + "') " +
-                         "OR (receiver = '" + user.getUserName() + "' AND sender = '" + receiverName + "') " +
-                         "ORDER BY timestamp ASC";
-            System.out.println(receiverName);
-            ResultSet rs = s.executeQuery(sql);
-            
-            while(rs.next()){
-                Message message = new Message(rs.getString("sender"), rs.getString("receiver"), rs.getString("message"));
-                messages.add(message);
-            }
-            
-            GridBagConstraints gbc = new GridBagConstraints();
-            gbc.gridx = 0;
-            gbc.gridy = 1;
-            gbc.insets = new Insets(5, 10, 5, 10); // Padding
-            
-            for (Message m : messages) {
-                String text = m.getSender() + ": " + m.getMessageText();
-                JLabel label = new JLabel(text);
-                label.setBorder(BorderFactory.createLineBorder(Color.BLACK)); // For visibility
-                label.setPreferredSize(new Dimension(875,50)); // Initial size
-
-                if (m.getSender().equals(user.getUserName())) {
-                    label.setHorizontalAlignment(SwingConstants.RIGHT); // Align to the right for even indices
-                } else {
-                    label.setHorizontalAlignment(SwingConstants.LEFT); // Align to the left for odd indices
+            JButton j = new JButton(username);
+            Dimension buttonSize = new Dimension(225, 50);
+            j.setMinimumSize(buttonSize);
+            j.setPreferredSize(buttonSize);
+            j.setMaximumSize(buttonSize);
+            j.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    receiverNameLabel.setText(username);
                 }
-
-                jPanel1.add(label, gbc);
-                gbc.gridy++;
-            }
-            
-
-  
-        } catch (SQLException e) {
-            System.out.println(e);
+            });
+            receiversjPanel.add(j);
         }
+
+        receiversjPanel.revalidate(); // Refresh the panel layout
+        receiversjPanel.repaint(); // Repaint the panel to show new buttons
+
+    } catch (SQLException e) {
+        System.out.println(e);
     }
+}
 
     
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -305,6 +224,7 @@ public class MessagesFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void logoHomeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoHomeButtonActionPerformed
+
         mainForm.displayForm(new homePanel(user, mainForm));
     }//GEN-LAST:event_logoHomeButtonActionPerformed
 
@@ -315,7 +235,6 @@ public class MessagesFrame extends javax.swing.JFrame {
     private void sendMessageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendMessageButtonActionPerformed
         ButtonActions bAction = new ButtonActions();
         bAction.sendMessage(textField, user, receiverNameLabel);
-        displayMessages(receiverNameLabel.getText());
     }//GEN-LAST:event_sendMessageButtonActionPerformed
 
     
@@ -357,9 +276,7 @@ public class MessagesFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel leftSidePanel;
     private javax.swing.JButton logoHomeButton;
     private javax.swing.JLabel nameLabel;

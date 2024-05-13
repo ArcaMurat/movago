@@ -40,12 +40,12 @@ public class ButtonActions {
         
     }
     
-    public void insertAction (String username, String password, String bio, String photoString, SignUpForm form){
+    public void insertAction (String username, String password, String bio, SignUpForm form){
         try {
             if(!username.isEmpty() && !password.isEmpty() && !bio.isEmpty()){
                 Connection con = DatabaseConnection.getDataSource().getConnection();
                 Statement s = con.createStatement();
-                s.executeUpdate("INSERT INTO movago.usertable (username, password, bio, photoString) VALUES ('"+username+"', '"+password+"', '"+bio+"', '"+photoString+"')");
+                s.executeUpdate("INSERT INTO movago.usertable (username, password, bio) VALUES ('"+username+"', '"+password+"', '"+bio+"')");
                 JOptionPane.showMessageDialog(form,"You successfully signed up!", "System Message", JOptionPane.INFORMATION_MESSAGE);
                 form.dispose();
             } else{
@@ -72,8 +72,8 @@ public class ButtonActions {
             if(!titleString.isEmpty() && !fromString.isEmpty() && !firstCityString.isEmpty() && !accomodationString.isEmpty()){
                 Connection con = DatabaseConnection.getDataSource().getConnection();
                 Statement s = con.createStatement();
-                s.executeUpdate("INSERT INTO movago.triptable (title, ownerUserName, participantCount, `from`, firstCity, secondCity, thirdCity, accomodation, accomodation2, accomodation3, firstDate, `date`, date2, date3, budget, budget2, budget3, currentCount) " +
-                                "VALUES ('"+titleString+"','"+ownerUserName+"', '"+participantsCount+"','"+fromString+"','"+firstCityString+"','"+secondCityString+"','"+thirdCityString+"', '"+accomodationString+"', '"+accomodation2String+"', '"+accomodation3String+"', '"+firstDateString+"', '"+date+"', '"+date2+"', '"+date3+"', '"+budget+"', '"+budget2+"', '"+budget3+"', '"+1+"')");
+                s.executeUpdate("INSERT INTO movago.triptable (title, ownerUserName, participantCount, `from`, firstCity, secondCity, thirdCity, accomodation, accomodation2, accomodation3, firstDate, `date`, date2, date3, budget, budget2, budget3) " +
+                                "VALUES ('"+titleString+"','"+ownerUserName+"', '"+participantsCount+"','"+fromString+"','"+firstCityString+"','"+secondCityString+"','"+thirdCityString+"', '"+accomodationString+"', '"+accomodation2String+"', '"+accomodation3String+"', '"+firstDateString+"', '"+date+"', '"+date2+"', '"+date3+"', '"+budget+"', '"+budget2+"', '"+budget3+"')");
                 JOptionPane.showMessageDialog(form, "You successfully created a trip!", "System Message", JOptionPane.INFORMATION_MESSAGE);
                 
             }

@@ -4,12 +4,12 @@ import com.movago.User;
 import java.util.Date;
 
 public class Message {
-    private String sender;
-    private String receiver;
+    private User sender;
+    private User receiver;
     private String messageText;
     private Date sentTime;
 
-    public Message(String sender, String receiver, String messageText) {
+    public Message(User sender, User receiver, String messageText) {
         this.sender = sender;
         this.receiver = receiver;
         this.messageText = messageText;
@@ -24,11 +24,11 @@ public class Message {
         return sentTime;
     }
 
-    public String getSender() {
+    public User getSender() {
         return sender;
     }
 
-    public String getReceiver() {
+    public User getReceiver() {
         return receiver;
     }
 }

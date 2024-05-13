@@ -1,10 +1,5 @@
 package com.movago;
 
-import com.movago.connection.DatabaseConnection;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 public class User {
@@ -28,33 +23,22 @@ public class User {
         this.ownedTrips = new ArrayList<>();
         this.joinedTrips = new ArrayList<>();
         this.sendedMessages = new ArrayList<>();
-        this.receivedMessages = new ArrayList<>();     
+        this.receivedMessages = new ArrayList<>();
+        
+        
     }
     
     public User(String userName, String bio){
         this.userName = userName;
         this.bio = bio;
     }
-    
-    public ArrayList<Trip> getJoinedTrips(){
-        ArrayList<Trip> trips = new ArrayList<>();
-            try {
-                Connection con = DatabaseConnection.getDataSource().getConnection();
-                Statement s = con.createStatement();
-                String sql = "SELECT triptitle FROM movago.participant_table WHERE username= '"+userName+"'";
-                
-                ResultSet rs = s.executeQuery(sql);
-                Trips tr = new Trips();
-                while(rs.next()){
-                    trips.add(tr.getTrip(rs.getString("triptitle")));
-                }
-                
-            } catch (SQLException e) {
-                System.out.println(e);
-            }
-        return trips;
-    }
 
+    // Sends a message from this user to another user and updates both sender's and receiver's message lists
+    public void sendMessageToUser(User receiver, String messageText) {
+        Message message = new Message(this, receiver, messageText);
+        this.sendedMessages.add(message);
+        receiver.receivedMessages.add(message);
+    }
 
 
 

@@ -59,10 +59,8 @@ public class Trips {
                 double budget = rs.getDouble("budget");
                 double budget2 = rs.getDouble("budget2");
                 double budget3 = rs.getDouble("budget3");
-                
-                int currentCount = rs.getInt("currentCount");
 
-                Trip trip = new Trip(title, ownerName, participantsLimit, from, startDate, city, city2, city3, accommodation, accommodation2, accommodation3, firstDate, date, date2, date3, budget, budget2, budget3, currentCount);
+                Trip trip = new Trip(title, ownerName, participantsLimit, from, startDate, city, city2, city3, accommodation, accommodation2, accommodation3, firstDate, date, date2, date3, budget, budget2, budget3);
                 trips.add(trip);
             }
         } catch (SQLException e) {
@@ -72,29 +70,9 @@ public class Trips {
         }
     }
     
-    public Trip getTrip(String title){
-        for(Trip t : getAllTrips()){
-            if(t.getTitle().equals(title)){
-                return t;
-            }
-        }
-        return null;
-    }
-    
     public ArrayList<Trip> getAllTripsSortedByBudget() {
         ArrayList<Trip> trips = getAllTrips(); // Fetch the trips
 
-        // Sort the trips list using a custom comparator
-        Collections.sort(trips, new Comparator<Trip>() {
-            @Override
-            public int compare(Trip t1, Trip t2) {
-                return Double.compare(t2.getTotalBudget(), t1.getTotalBudget());
-            }
-        });
-
-        return trips;
-    }
-    public ArrayList<Trip> getAllTripsSortedByBudget(ArrayList<Trip> trips) {
         // Sort the trips list using a custom comparator
         Collections.sort(trips, new Comparator<Trip>() {
             @Override
@@ -119,55 +97,6 @@ public class Trips {
         });
 
         return trips;
-    }
-    public ArrayList<Trip> getAllTripsSortedByBudgetDescending(ArrayList<Trip> trips) {
-
-        // Sort the trips list using a custom comparator
-        Collections.sort(trips, new Comparator<Trip>() {
-            @Override
-            public int compare(Trip t1, Trip t2) {
-                // Reverse the comparison to sort by descending order of budget
-                return Double.compare(t1.getTotalBudget(), t2.getTotalBudget());
-            }
-        });
-
-        return trips;
-    }
-    
-    public ArrayList<Trip> filterTripsByBudget(double minBudget, double maxBudget) {
-        Trips tr = new Trips();
-        ArrayList<Trip> trips = tr.getAllTrips(); // Fetch all trips
-        ArrayList<Trip> filteredTrips = new ArrayList<>(); // To store filtered trips
-
-        for (Trip trip : trips) {
-            double totalBudget = trip.getTotalBudget();
-            if (totalBudget >= minBudget && totalBudget <= maxBudget) {
-                filteredTrips.add(trip);
-            }
-        }
-        return filteredTrips;
-    }
-    
-    public ArrayList<Trip> filterTripsByOrigin(String origin) {
-        ArrayList<Trip> trips = getAllTrips(); // Fetch all trips
-        ArrayList<Trip> filteredTrips = new ArrayList<>(); // To store filtered trips
-
-        for (Trip trip : trips) {
-            if (trip.getFrom().equalsIgnoreCase(origin)) {
-                filteredTrips.add(trip);
-            }
-        }
-        return filteredTrips;
-    }
-    public ArrayList<Trip> filterTripsByOrigin(String origin, ArrayList<Trip> trips) {
-        ArrayList<Trip> filteredTrips = new ArrayList<>(); // To store filtered trips
-
-        for (Trip trip : trips) {
-            if (trip.getFrom().equalsIgnoreCase(origin)) {
-                filteredTrips.add(trip);
-            }
-        }
-        return filteredTrips;
     }
 }
 
