@@ -31,9 +31,10 @@ public class User {
         this.receivedMessages = new ArrayList<>();     
     }
     
-    public User(String userName, String bio){
+    public User(String userName, String bio, String photoString){
         this.userName = userName;
         this.bio = bio;
+        this.profilePhotoString = photoString;
     }
     
     public ArrayList<Trip> getJoinedTrips(){
@@ -77,5 +78,8 @@ public class User {
     }
     public String getBio(){
         return bio;
+    }
+    public String getPhotoString(){
+        return profilePhotoString;
     }
 }

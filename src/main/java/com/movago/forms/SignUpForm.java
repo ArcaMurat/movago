@@ -7,6 +7,10 @@ package com.movago.forms;
 import javax.swing.JOptionPane;
 import com.formdev.flatlaf.FlatDarculaLaf;
 import com.movago.helper.ButtonActions;
+import java.util.Enumeration;
+import javax.swing.AbstractButton;
+import javax.swing.ButtonGroup;
+import javax.swing.JRadioButton;
 
 /**
  *
@@ -40,6 +44,11 @@ public class SignUpForm extends javax.swing.JFrame {
         question8 = new javax.swing.ButtonGroup();
         question9 = new javax.swing.ButtonGroup();
         question10 = new javax.swing.ButtonGroup();
+        question11 = new javax.swing.ButtonGroup();
+        question12 = new javax.swing.ButtonGroup();
+        question13 = new javax.swing.ButtonGroup();
+        question14 = new javax.swing.ButtonGroup();
+        question15 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         bioTextField = new javax.swing.JTextField();
@@ -75,6 +84,18 @@ public class SignUpForm extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jRadioButton19 = new javax.swing.JRadioButton();
         jRadioButton20 = new javax.swing.JRadioButton();
+        jLabel15 = new javax.swing.JLabel();
+        jRadioButton21 = new javax.swing.JRadioButton();
+        jRadioButton22 = new javax.swing.JRadioButton();
+        jRadioButton23 = new javax.swing.JRadioButton();
+        jRadioButton24 = new javax.swing.JRadioButton();
+        jLabel16 = new javax.swing.JLabel();
+        jRadioButton25 = new javax.swing.JRadioButton();
+        jRadioButton26 = new javax.swing.JRadioButton();
+        jLabel17 = new javax.swing.JLabel();
+        jRadioButton27 = new javax.swing.JRadioButton();
+        jRadioButton28 = new javax.swing.JRadioButton();
+        jLabel18 = new javax.swing.JLabel();
         usernameTextField = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         passwordField = new javax.swing.JPasswordField();
@@ -102,10 +123,10 @@ public class SignUpForm extends javax.swing.JFrame {
         jScrollPane1.setHorizontalScrollBar(null);
         jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
 
-        jLabel3.setText("Q1  Hamburger or Pizza ? ");
+        jLabel3.setText("Q1  Are you comfortable being outdoors all day?");
 
         question1.add(hamburgerCheck);
-        hamburgerCheck.setText("Hamburger");
+        hamburgerCheck.setText("Yes");
         hamburgerCheck.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 hamburgerCheckActionPerformed(evt);
@@ -113,17 +134,17 @@ public class SignUpForm extends javax.swing.JFrame {
         });
 
         question1.add(pizzaCheck);
-        pizzaCheck.setText("Pizza");
+        pizzaCheck.setText("No");
         pizzaCheck.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pizzaCheckActionPerformed(evt);
             }
         });
 
-        jLabel4.setText("Q2  Hamburger or Pizza ? ");
+        jLabel4.setText("Q2  Do you enjoy trying local cuisines?");
 
         question2.add(jRadioButton3);
-        jRadioButton3.setText("Hamburger");
+        jRadioButton3.setText("Yes");
         jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton3ActionPerformed(evt);
@@ -131,12 +152,12 @@ public class SignUpForm extends javax.swing.JFrame {
         });
 
         question2.add(jRadioButton4);
-        jRadioButton4.setText("Pizza");
+        jRadioButton4.setText("No");
 
-        jLabel5.setText("Q3  Hamburger or Pizza ? ");
+        jLabel5.setText("Q3  Do you prefer luxury accommodations?");
 
         question3.add(jRadioButton5);
-        jRadioButton5.setText("Hamburger");
+        jRadioButton5.setText("Yes");
         jRadioButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton5ActionPerformed(evt);
@@ -144,15 +165,15 @@ public class SignUpForm extends javax.swing.JFrame {
         });
 
         question3.add(jRadioButton6);
-        jRadioButton6.setText("Pizza");
+        jRadioButton6.setText("No");
 
-        jLabel6.setText("Q4  Hamburger or Pizza ? ");
+        jLabel6.setText("Q4  Is nightlife a big part of your vacation enjoyment?");
 
         question4.add(jRadioButton7);
-        jRadioButton7.setText("Pizza");
+        jRadioButton7.setText("No");
 
         question4.add(jRadioButton8);
-        jRadioButton8.setText("Hamburger");
+        jRadioButton8.setText("Yes");
         jRadioButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton8ActionPerformed(evt);
@@ -160,25 +181,25 @@ public class SignUpForm extends javax.swing.JFrame {
         });
 
         question5.add(jRadioButton9);
-        jRadioButton9.setText("Pizza");
+        jRadioButton9.setText("No");
 
         question5.add(jRadioButton10);
-        jRadioButton10.setText("Hamburger");
+        jRadioButton10.setText("Yes");
         jRadioButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton10ActionPerformed(evt);
             }
         });
 
-        jLabel7.setText("Q5  Hamburger or Pizza ? ");
+        jLabel7.setText("Q5  Is internet access necessary during your vacation?");
 
         question6.add(jRadioButton11);
-        jRadioButton11.setText("Pizza");
+        jRadioButton11.setText("No");
 
-        jLabel8.setText("Q6 ");
+        jLabel8.setText("Q6 Do you prefer cultural experiences over leisure activities?");
 
         question6.add(jRadioButton12);
-        jRadioButton12.setText("Hamburger");
+        jRadioButton12.setText("Yes");
         jRadioButton12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton12ActionPerformed(evt);
@@ -186,22 +207,22 @@ public class SignUpForm extends javax.swing.JFrame {
         });
 
         question7.add(jRadioButton13);
-        jRadioButton13.setText("Pizza");
+        jRadioButton13.setText("No");
 
-        jLabel9.setText("Q7  goobi goob");
+        jLabel9.setText("Q7  Do you enjoy waking up early during vacations?");
 
         question7.add(jRadioButton14);
-        jRadioButton14.setText("Hamburger");
+        jRadioButton14.setText("Yes");
         jRadioButton14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton14ActionPerformed(evt);
             }
         });
 
-        jLabel11.setText("Q8  Hamburger or Pizza ? ");
+        jLabel11.setText("Q8  Are you willing to use public transportation in a new city?");
 
         question8.add(jRadioButton15);
-        jRadioButton15.setText("Hamburger");
+        jRadioButton15.setText("Yes");
         jRadioButton15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton15ActionPerformed(evt);
@@ -209,33 +230,85 @@ public class SignUpForm extends javax.swing.JFrame {
         });
 
         question8.add(jRadioButton16);
-        jRadioButton16.setText("Pizza");
+        jRadioButton16.setText("No");
 
         question9.add(jRadioButton17);
-        jRadioButton17.setText("Pizza");
+        jRadioButton17.setText("No");
 
         question9.add(jRadioButton18);
-        jRadioButton18.setText("Hamburger");
+        jRadioButton18.setText("Yes");
         jRadioButton18.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton18ActionPerformed(evt);
             }
         });
 
-        jLabel12.setText("Q9  Hamburger or Pizza ? ");
+        jLabel12.setText("Q9  Do you find taking a lot of photos important during vacations?");
 
-        jLabel13.setText("Q10  Hamburger or Pizza ? ");
+        jLabel13.setText("Q10  Do you consider gym and fitness facilities when choosing accommodations?");
 
         question10.add(jRadioButton19);
-        jRadioButton19.setText("Pizza");
+        jRadioButton19.setText("No");
 
         question10.add(jRadioButton20);
-        jRadioButton20.setText("Hamburger");
+        jRadioButton20.setText("Yes");
         jRadioButton20.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton20ActionPerformed(evt);
             }
         });
+
+        jLabel15.setText("Q11  Are you interested in eco-friendly travel options?");
+
+        question11.add(jRadioButton21);
+        jRadioButton21.setText("Yes");
+        jRadioButton21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton21ActionPerformed(evt);
+            }
+        });
+
+        question11.add(jRadioButton22);
+        jRadioButton22.setText("No");
+
+        question12.add(jRadioButton23);
+        jRadioButton23.setText("Yes");
+        jRadioButton23.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton23ActionPerformed(evt);
+            }
+        });
+
+        question12.add(jRadioButton24);
+        jRadioButton24.setText("No");
+
+        jLabel16.setText("Q12  Are you comfortable driving in a foreign country?");
+
+        question13.add(jRadioButton25);
+        jRadioButton25.setText("No");
+
+        question13.add(jRadioButton26);
+        jRadioButton26.setText("Yes");
+        jRadioButton26.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton26ActionPerformed(evt);
+            }
+        });
+
+        jLabel17.setText("Q13  Do you like to plan your vacation itinerary in detail before traveling?");
+
+        question14.add(jRadioButton27);
+        jRadioButton27.setText("Yes");
+        jRadioButton27.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton27ActionPerformed(evt);
+            }
+        });
+
+        question14.add(jRadioButton28);
+        jRadioButton28.setText("No");
+
+        jLabel18.setText("Q14 Do you tend to visit multiple cities or countries in one trip");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -302,8 +375,32 @@ public class SignUpForm extends javax.swing.JFrame {
                         .addGap(116, 116, 116)
                         .addComponent(jRadioButton20)
                         .addGap(39, 39, 39)
-                        .addComponent(jRadioButton19)))
-                .addGap(0, 253, Short.MAX_VALUE))
+                        .addComponent(jRadioButton19))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(116, 116, 116)
+                        .addComponent(jRadioButton21)
+                        .addGap(39, 39, 39)
+                        .addComponent(jRadioButton22))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(116, 116, 116)
+                        .addComponent(jRadioButton23)
+                        .addGap(39, 39, 39)
+                        .addComponent(jRadioButton24))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(116, 116, 116)
+                        .addComponent(jRadioButton26)
+                        .addGap(39, 39, 39)
+                        .addComponent(jRadioButton25))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(116, 116, 116)
+                        .addComponent(jRadioButton27)
+                        .addGap(39, 39, 39)
+                        .addComponent(jRadioButton28)))
+                .addGap(0, 296, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -357,7 +454,27 @@ public class SignUpForm extends javax.swing.JFrame {
                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jRadioButton20)
                     .addComponent(jRadioButton19))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRadioButton21)
+                    .addComponent(jRadioButton22))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRadioButton23)
+                    .addComponent(jRadioButton24))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRadioButton26)
+                    .addComponent(jRadioButton25))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRadioButton27)
+                    .addComponent(jRadioButton28))
+                .addGap(0, 136, Short.MAX_VALUE))
         );
 
         jScrollPane1.setViewportView(jPanel1);
@@ -397,13 +514,19 @@ public class SignUpForm extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 974, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                        .addComponent(signUpButton, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
+                        .addComponent(bioTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(photoStringField)
+                                .addGap(281, 281, 281))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -414,33 +537,28 @@ public class SignUpForm extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(passwordVisibilityCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(bioTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(photoStringField)
-                                        .addGap(275, 275, 275))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addContainerGap())
+                                .addComponent(passwordVisibilityCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(signUpButton, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 974, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(115, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(usernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(passwordVisibilityCheckBox))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(usernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(passwordVisibilityCheckBox))
+                    .addComponent(signUpButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(19, 19, 19)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -451,19 +569,25 @@ public class SignUpForm extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(photoStringField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(6, 6, 6)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(335, 335, 335)
-                        .addComponent(signUpButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public String getSelectedButtonText(ButtonGroup buttonGroup) {
+        for (Enumeration<AbstractButton> buttons = buttonGroup.getElements(); buttons.hasMoreElements();) {
+            AbstractButton button = buttons.nextElement();
+
+            if (button.isSelected()) {
+                return button.getText();
+            }
+        }
+
+        return null;
+    }
+    
     private void bioTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bioTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_bioTextFieldActionPerformed
@@ -512,6 +636,8 @@ public class SignUpForm extends javax.swing.JFrame {
         
     }//GEN-LAST:event_passwordVisibilityCheckBoxActionPerformed
 
+
+    
     private void signUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpButtonActionPerformed
         //SET SQL //SET SQL //SET SQL //SET SQL //SET SQL //SET SQL //SET SQL //SET SQL //SET SQL //SET SQL 
         String usernameString = usernameTextField.getText();
@@ -520,7 +646,27 @@ public class SignUpForm extends javax.swing.JFrame {
         String photoString = photoStringField.getText();
         
         ButtonActions bAction = new ButtonActions();
-        bAction.insertAction(usernameString,passwordString,bioString,photoString, this);
+
+        
+        
+
+        
+        String q1 = getSelectedButtonText(question1);
+        String q2 = getSelectedButtonText(question2);
+        String q3 = getSelectedButtonText(question3);
+        String q4 = getSelectedButtonText(question4);
+        String q5 = getSelectedButtonText(question5);
+        String q6 = getSelectedButtonText(question6);
+        String q7 = getSelectedButtonText(question7);
+        String q8 = getSelectedButtonText(question8);
+        String q9 = getSelectedButtonText(question9);
+        String q10 = getSelectedButtonText(question10);
+        String q11 = getSelectedButtonText(question11);
+        String q12 = getSelectedButtonText(question12);
+        String q13 = getSelectedButtonText(question13);
+        String q14 = getSelectedButtonText(question14);
+        
+        bAction.insertAction(usernameString, passwordString, bioString, photoString, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, q13, q14, this);
         
 
         
@@ -541,6 +687,22 @@ public class SignUpForm extends javax.swing.JFrame {
     private void jRadioButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton20ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton20ActionPerformed
+
+    private void jRadioButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton21ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton21ActionPerformed
+
+    private void jRadioButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton23ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton23ActionPerformed
+
+    private void jRadioButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton26ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton26ActionPerformed
+
+    private void jRadioButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton27ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton27ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -563,6 +725,10 @@ public class SignUpForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -583,6 +749,14 @@ public class SignUpForm extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton18;
     private javax.swing.JRadioButton jRadioButton19;
     private javax.swing.JRadioButton jRadioButton20;
+    private javax.swing.JRadioButton jRadioButton21;
+    private javax.swing.JRadioButton jRadioButton22;
+    private javax.swing.JRadioButton jRadioButton23;
+    private javax.swing.JRadioButton jRadioButton24;
+    private javax.swing.JRadioButton jRadioButton25;
+    private javax.swing.JRadioButton jRadioButton26;
+    private javax.swing.JRadioButton jRadioButton27;
+    private javax.swing.JRadioButton jRadioButton28;
     private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JRadioButton jRadioButton5;
@@ -597,6 +771,11 @@ public class SignUpForm extends javax.swing.JFrame {
     private javax.swing.JRadioButton pizzaCheck;
     private javax.swing.ButtonGroup question1;
     private javax.swing.ButtonGroup question10;
+    private javax.swing.ButtonGroup question11;
+    private javax.swing.ButtonGroup question12;
+    private javax.swing.ButtonGroup question13;
+    private javax.swing.ButtonGroup question14;
+    private javax.swing.ButtonGroup question15;
     private javax.swing.ButtonGroup question2;
     private javax.swing.ButtonGroup question3;
     private javax.swing.ButtonGroup question4;

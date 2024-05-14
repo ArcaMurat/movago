@@ -7,7 +7,9 @@ package com.movago.forms;
 import com.movago.Trip;
 import com.movago.User;
 import com.movago.connection.DatabaseConnection;
+import com.movago.helper.RatioManager;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
@@ -19,18 +21,34 @@ import javax.swing.JOptionPane;
 public class TripPage extends javax.swing.JPanel {
     Trip trip;
     User user;
+    String receiverName;
+    String receiverBio;
+    String receiverPhotoString;
+    
     /**
      * Creates new form TripPage
      */
     public TripPage(Trip trip, User user) {
         this.trip = trip;
         this.user = user;
+        findReceiverUser(trip);
+        
+        RatioManager rm = new RatioManager();
+        int ratio = rm.calculateRatio(user.getUserName(), receiverName);
+
+        
+        
+        
+        
+        
+        
+        
         String html = "<table style=\"height: 177px; width: 99.0683%; border-collapse: collapse; border-style: dotted; float: left;\" border=\"1\">\n" +
 "<tbody>\n" +
 "<tr style=\"height: 177px;\">\n" +
-"<td style=\"width: 73.3194%; height: 177px;\">"+user.getBio()+"</td>\n" +
+"<td style=\"width: 73.3194%; height: 177px;\">"+receiverBio+"</td>\n" +
 "<td style=\"width: 48.9028%; height: 177px;\">\n" +
-"<p><img src=\"https://media.licdn.com/dms/image/D4E03AQFO-ZTrzm3DgA/profile-displayphoto-shrink_800_800/0/1713032291243?e=1720656000&amp;v=beta&amp;t=lv1VFBF5z5tqYXPWdT18ntafsHBQlNB4zJs_BQJLJY4\" alt=\"\" width=\"169\" height=\"169\" />Name:&nbsp;"+ user.getUserName()+" &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;75</p>\n" +
+"<img src=\""+receiverPhotoString+"\" alt=\"\" width=\"169\" height=\"169\" /> <p>Name:&nbsp;"+receiverName+" </p><p> Matching Ratio: "+ratio+"</p>\n" +
 "</td>\n" +
 "</tr>\n" +
 "</tbody>\n" +
@@ -41,7 +59,7 @@ public class TripPage extends javax.swing.JPanel {
 "<li style=\"text-align: left;\"><strong>&nbsp; &nbsp; "+trip.getCity()+":</strong>\n" +
 "<ul>\n" +
 "<li style=\"text-align: left;\">"+trip.getAccommodation()+" / "+trip.getfirstDate()+" - "+trip.getDate()+"</li>\n" +
-"<li style=\"text-align: left;\">Budget: "+trip.getBudget()+"/li>\n" +
+"<li style=\"text-align: left;\">Budget: "+trip.getBudget()+"</li>\n" +
 "</ul>\n" +
 "</li>\n" +
 "</ul>\n" +
@@ -69,6 +87,7 @@ public class TripPage extends javax.swing.JPanel {
         initComponents();
         jTextPane1.setContentType("text/html");
         jTextPane1.setText(html);
+        enrollTrip.setText(trip.getcurrentCount() + " / " + trip.getParticipantsLimit());
     }
 
     /**
@@ -83,7 +102,7 @@ public class TripPage extends javax.swing.JPanel {
         titleLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
-        jButton1 = new javax.swing.JButton();
+        enrollTrip = new javax.swing.JButton();
 
         titleLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -91,9 +110,10 @@ public class TripPage extends javax.swing.JPanel {
 
         jScrollPane1.setViewportView(jTextPane1);
 
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        enrollTrip.setFont(new java.awt.Font("Segoe UI", 1, 9)); // NOI18N
+        enrollTrip.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                enrollTripActionPerformed(evt);
             }
         });
 
@@ -107,8 +127,8 @@ public class TripPage extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 763, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 193, Short.MAX_VALUE))
+                        .addComponent(enrollTrip, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 186, Short.MAX_VALUE))
                     .addComponent(jScrollPane1))
                 .addContainerGap())
         );
@@ -118,29 +138,56 @@ public class TripPage extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
+                    .addComponent(enrollTrip, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    
+    public void findReceiverUser(Trip trip){
+        try {
+            Connection con = DatabaseConnection.getDataSource().getConnection();
+            Statement s = con.createStatement();
+            String sql = "SELECT * FROM movago.usertable WHERE username = '"+trip.getOwnerName()+"'";
+            ResultSet rs = s.executeQuery(sql);
+            
+            while(rs.next()){
+                receiverName = rs.getString("username");
+                receiverBio = rs.getString("bio");
+                receiverPhotoString = rs.getString("photoString");
+            }
+            
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+    
+    private void enrollTripActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enrollTripActionPerformed
         try (Connection con = DatabaseConnection.getDataSource().getConnection();
                 Statement s = con.createStatement();){
             
-            String sql = "INSERT INTO movago.participant_table (username, triptitle) VALUES ('"+user.getUserName()+"', '"+trip.getTitle()+"')";
-            s.executeUpdate(sql);
-            s.executeUpdate("UPDATE movago.triptable set currentCount = '"+trip.getcurrentCount() + 1+"' WHERE title = '"+trip.getTitle()+"'");
+            if(trip.getcurrentCount() < trip.getParticipantsLimit()){
+                int currentCount = trip.getcurrentCount() + 1;
+                String sql = "INSERT INTO movago.participant_table (username, triptitle) VALUES ('"+user.getUserName()+"', '"+trip.getTitle()+"')";
+                s.executeUpdate(sql);
+                s.executeUpdate("UPDATE movago.triptable set currentCount = '"+ currentCount +"' WHERE title = '"+trip.getTitle()+"'");
+                JOptionPane.showMessageDialog(jTextPane1, "You enrolled to this trip. Have fun");
+            }
+            else{
+                JOptionPane.showMessageDialog(jTextPane1, "This trip's capacity is full.");
+            }
+                    
             
       } catch (SQLException e) {
           JOptionPane.showMessageDialog(jTextPane1, "You already enrolled to this trip.");
           System.out.println(e);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_enrollTripActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton enrollTrip;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextPane jTextPane1;
     private javax.swing.JLabel titleLabel;

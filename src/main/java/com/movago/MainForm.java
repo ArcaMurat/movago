@@ -1,5 +1,6 @@
 package com.movago;
 
+import com.movago.*;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import javax.swing.JPanel;

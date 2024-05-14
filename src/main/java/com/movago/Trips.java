@@ -84,7 +84,6 @@ public class Trips {
     public ArrayList<Trip> getAllTripsSortedByBudget() {
         ArrayList<Trip> trips = getAllTrips(); // Fetch the trips
 
-        // Sort the trips list using a custom comparator
         Collections.sort(trips, new Comparator<Trip>() {
             @Override
             public int compare(Trip t1, Trip t2) {
@@ -95,7 +94,6 @@ public class Trips {
         return trips;
     }
     public ArrayList<Trip> getAllTripsSortedByBudget(ArrayList<Trip> trips) {
-        // Sort the trips list using a custom comparator
         Collections.sort(trips, new Comparator<Trip>() {
             @Override
             public int compare(Trip t1, Trip t2) {
@@ -107,13 +105,12 @@ public class Trips {
     }
     
     public ArrayList<Trip> getAllTripsSortedByBudgetDescending() {
-        ArrayList<Trip> trips = getAllTrips(); // Fetch the trips
+        ArrayList<Trip> trips = getAllTrips();
 
-        // Sort the trips list using a custom comparator
         Collections.sort(trips, new Comparator<Trip>() {
             @Override
             public int compare(Trip t1, Trip t2) {
-                // Reverse the comparison to sort by descending order of budget
+
                 return Double.compare(t1.getTotalBudget(), t2.getTotalBudget());
             }
         });
@@ -122,11 +119,9 @@ public class Trips {
     }
     public ArrayList<Trip> getAllTripsSortedByBudgetDescending(ArrayList<Trip> trips) {
 
-        // Sort the trips list using a custom comparator
         Collections.sort(trips, new Comparator<Trip>() {
             @Override
             public int compare(Trip t1, Trip t2) {
-                // Reverse the comparison to sort by descending order of budget
                 return Double.compare(t1.getTotalBudget(), t2.getTotalBudget());
             }
         });

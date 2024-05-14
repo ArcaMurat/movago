@@ -4,8 +4,12 @@
  */
 package com.movago;
 
+import com.movago.MainForm;
 import com.movago.forms.MessagesFrame;
 import com.movago.forms.homePanel;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 
 /**
@@ -27,27 +31,45 @@ public class dashboard extends javax.swing.JFrame {
     }
     
     public dashboard(User user) {
+        mainForm =  FormManager.getMainFormInstance();
         this.user = user;
         initComponents();
-        nameLabel.setText(user.getUserName());
+        nameLabel.setText("Username: " + user.getUserName());
         trips = user.getJoinedTrips();
+        String photoUrl = user.getPhotoString();
+        String htmlContent = "<html><p><img src="+ photoUrl +" \n" +
+"        width = \"100\" height = \"100\"alt=\"\" /></p></html>";
+        
+        
+        if (isValidURL(photoUrl)) {
+            photoLabel.setText(htmlContent);
+            System.out.println("Profile picture successfully uploaded");
+        }
+        ArrayList<String> list = new ArrayList<>();
 
-        if(trips.get(0) != null){
-            vacation1.setText("1 - " + trips.get(0).getTitle() + " " + trips.get(0).getcurrentCount() + "/" + trips.get(0).getParticipantsLimit());
+        
+
+        if (!list.isEmpty()) {
+            if(trips.get(0) != null){
+                vacation1.setText("1 - " + trips.get(0).getTitle() + " " + trips.get(0).getcurrentCount() + "/" + trips.get(0).getParticipantsLimit());
+            }
+            if(trips.get(1) != null){
+                vacation2.setText("2 - " + trips.get(1).getTitle() + " " + trips.get(1).getcurrentCount() + "/" + trips.get(1).getParticipantsLimit());
+            }
+            if(trips.get(2) != null){
+                vacation3.setText("3 - " + trips.get(2).getTitle() + " " + trips.get(2).getcurrentCount() + "/" + trips.get(2).getParticipantsLimit());
+            }
+        } else {
+            
         }
-        if(trips.get(1) != null){
-            vacation2.setText("2 - " + trips.get(1).getTitle() + " " + trips.get(1).getcurrentCount() + "/" + trips.get(1).getParticipantsLimit());
-        }
-        if(trips.get(2) != null){
-            vacation3.setText("3 - " + trips.get(2).getTitle() + " " + trips.get(2).getcurrentCount() + "/" + trips.get(2).getParticipantsLimit());
-        }
+
+
 
 
         
         homePanel selectedForm = new homePanel(user,mainForm);
         mainForm.displayForm(selectedForm);
     }
-   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -58,7 +80,6 @@ public class dashboard extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        mainForm = new com.movago.MainForm();
         leftSidePanel = new javax.swing.JPanel();
         logoHomeButton = new javax.swing.JButton();
         nameLabel = new javax.swing.JLabel();
@@ -68,10 +89,10 @@ public class dashboard extends javax.swing.JFrame {
         vacation2 = new javax.swing.JLabel();
         vacation3 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        photoLabel = new javax.swing.JLabel();
+        mainForm = new com.movago.MainForm();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        mainForm = FormManager.getMainFormInstance();
 
         logoHomeButton.setText("Voyago");
         logoHomeButton.addActionListener(new java.awt.event.ActionListener() {
@@ -99,7 +120,7 @@ public class dashboard extends javax.swing.JFrame {
                     .addComponent(vacation1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(vacation2, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(vacation3, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,37 +140,43 @@ public class dashboard extends javax.swing.JFrame {
             }
         });
 
+        photoLabel.setText("jLabel1");
+
         javax.swing.GroupLayout leftSidePanelLayout = new javax.swing.GroupLayout(leftSidePanel);
         leftSidePanel.setLayout(leftSidePanelLayout);
         leftSidePanelLayout.setHorizontalGroup(
             leftSidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(leftSidePanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(leftSidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(leftSidePanelLayout.createSequentialGroup()
-                        .addGroup(leftSidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())
-                    .addComponent(nameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, leftSidePanelLayout.createSequentialGroup()
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(logoHomeButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(leftSidePanelLayout.createSequentialGroup()
+                .addComponent(photoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(leftSidePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(leftSidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(nameLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         leftSidePanelLayout.setVerticalGroup(
             leftSidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(leftSidePanelLayout.createSequentialGroup()
-                .addGroup(leftSidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap()
+                .addGroup(leftSidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(logoHomeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(leftSidePanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(logoHomeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(114, 114, 114)
+                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(2, 2, 2)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(photoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(35, 35, 35)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -161,24 +188,36 @@ public class dashboard extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(leftSidePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(mainForm, javax.swing.GroupLayout.PREFERRED_SIZE, 825, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(mainForm, javax.swing.GroupLayout.PREFERRED_SIZE, 845, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(leftSidePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(mainForm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(mainForm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(leftSidePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    private boolean isValidURL(String url) {
+        try {
+            new URL(url).toURI();
+            return true;
+        } catch (MalformedURLException | URISyntaxException e) {
+            return false;
+        }
+    }
+
+    
     private void logoHomeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoHomeButtonActionPerformed
 
         mainForm.displayForm(new homePanel(user, mainForm));
@@ -241,6 +280,7 @@ public class dashboard extends javax.swing.JFrame {
     private javax.swing.JButton logoHomeButton;
     private com.movago.MainForm mainForm;
     private javax.swing.JLabel nameLabel;
+    private javax.swing.JLabel photoLabel;
     private javax.swing.JLabel vacation1;
     private javax.swing.JLabel vacation2;
     private javax.swing.JLabel vacation3;

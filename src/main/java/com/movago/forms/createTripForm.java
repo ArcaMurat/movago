@@ -4,6 +4,7 @@
  */
 package com.movago.forms;
 
+import com.movago.MainForm;
 import com.movago.User;
 import com.movago.helper.ButtonActions;
 import java.text.SimpleDateFormat;
@@ -15,14 +16,16 @@ import java.sql.Date;
  */
 public class createTripForm extends javax.swing.JPanel {
     User user;
+    MainForm mainform;
     /**
      * Creates new form createTripForm
      */
     public createTripForm() {
         initComponents();
     }
-    public createTripForm(User user) {
+    public createTripForm(User user, MainForm mainform) {
         this.user = user;
+        this.mainform = mainform;
         initComponents();
     }
 
@@ -424,7 +427,7 @@ public class createTripForm extends javax.swing.JPanel {
             budget3 = Long.parseLong(budgetTextField3.getText());
         }
         ButtonActions bAction = new ButtonActions();
-        bAction.createTripAction(titleString,user.getUserName(), participantsCount, fromString, firstCityString, secondCityString, thirdCityString, accomodationString, accomodation2String, accomodation3String, sqlfirstDate, sqlDate, sqlDate2, sqlDate3, budget, budget2, budget3, this);
+        bAction.createTripAction(titleString,user.getUserName(), participantsCount, fromString, firstCityString, secondCityString, thirdCityString, accomodationString, accomodation2String, accomodation3String, sqlfirstDate, sqlDate, sqlDate2, sqlDate3, budget, budget2, budget3, this, mainform, user);
         //bAction.createTripAction(titleString, PROPERTIES, titleString, titleString, titleString, titleString, titleString, titleString, titleString, titleString, titleString, titleString, titleString, HEIGHT, WIDTH, WIDTH, this);     
     }//GEN-LAST:event_createTripButtonActionPerformed
 

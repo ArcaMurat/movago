@@ -85,16 +85,16 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jPanel2" alignment="0" min="-2" pref="650" max="-2" attributes="0"/>
-                          <Component id="jPanel3" min="-2" pref="650" max="-2" attributes="0"/>
-                          <Component id="jPanel4" min="-2" pref="650" max="-2" attributes="0"/>
-                          <Component id="jPanel5" min="-2" pref="650" max="-2" attributes="0"/>
-                          <Component id="jPanel6" min="-2" pref="650" max="-2" attributes="0"/>
-                          <Component id="jPanel7" min="-2" pref="650" max="-2" attributes="0"/>
-                          <Component id="jPanel8" min="-2" pref="650" max="-2" attributes="0"/>
-                          <Component id="jPanel9" min="-2" pref="650" max="-2" attributes="0"/>
-                          <Component id="jPanel10" min="-2" pref="650" max="-2" attributes="0"/>
-                          <Component id="jPanel11" min="-2" pref="650" max="-2" attributes="0"/>
+                          <Component id="jPanel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanel8" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanel9" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanel10" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanel11" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="193" max="32767" attributes="0"/>
                   </Group>
@@ -636,16 +636,7 @@
                   </Group>
               </Group>
               <Group type="102" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="filterLabel" min="-2" pref="212" max="-2" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="fromLabel" min="-2" pref="95" max="-2" attributes="0"/>
-                              <Component id="fromTextField" min="-2" pref="154" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                  </Group>
+                  <Component id="filterLabel" min="-2" pref="212" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -666,10 +657,6 @@
                       <Component id="budgetField1" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="budgetField2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="fromLabel" min="-2" pref="26" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="fromTextField" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="applyFilterButton" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -728,13 +715,6 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="applyFilterButtonActionPerformed"/>
           </Events>
-        </Component>
-        <Component class="javax.swing.JLabel" name="fromLabel">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="From: "/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="fromTextField">
         </Component>
       </SubComponents>
     </Container>
