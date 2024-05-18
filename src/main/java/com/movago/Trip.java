@@ -1,6 +1,5 @@
 package com.movago;
 
-import java.util.ArrayList;
 import java.sql.Date;
 
 public class Trip {

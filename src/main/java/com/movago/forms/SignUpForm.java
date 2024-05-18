@@ -4,13 +4,11 @@
  */
 package com.movago.forms;
 
-import javax.swing.JOptionPane;
 import com.formdev.flatlaf.FlatDarculaLaf;
 import com.movago.helper.ButtonActions;
 import java.util.Enumeration;
 import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
-import javax.swing.JRadioButton;
 
 /**
  *
@@ -110,7 +108,6 @@ public class SignUpForm extends javax.swing.JFrame {
 
         jLabel2.setText("Biography:");
 
-        bioTextField.setText("...");
         bioTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bioTextFieldActionPerformed(evt);
@@ -569,7 +566,6 @@ public class SignUpForm extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(photoStringField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(6, 6, 6)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 

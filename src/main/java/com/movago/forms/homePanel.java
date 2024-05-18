@@ -19,6 +19,7 @@ import java.sql.SQLException;
  */
 public class homePanel extends javax.swing.JPanel {
     User user;
+    String ownerUserName;
 
     /**
      * Creates new form homePanel
@@ -27,10 +28,10 @@ public class homePanel extends javax.swing.JPanel {
         try {
         initComponents();
         Connection con = DatabaseConnection.getDataSource().getConnection();
-        String sql = "SELECT title, budget, date FROM movago.triptable";
+        String tripSQL = "SELECT title, budget, date FROM movago.triptable";
         String warningMessage = "";
         
-        PreparedStatement p = con.prepareStatement(sql);
+        PreparedStatement p = con.prepareStatement(tripSQL);
         ResultSet rs = p.executeQuery();
         
         while (rs.next()) {
@@ -38,12 +39,22 @@ public class homePanel extends javax.swing.JPanel {
             String title = rs.getString("title");
             double budget = rs.getDouble("budget");
             String date = rs.getString("date");
+            this.ownerUserName = rs.getString("ownerUserName");
             
             // filling textFields with retrieved data
             titleEditable.setText(title);
             budgetEditable.setText(budget + "");
             dateEditable.setText(date);
         }
+        String photoSQL = "SELECT photoString FROM movago.usertable WHERE username = '"+ownerUserName+"'";
+        p = con.prepareStatement(photoSQL);
+        rs = p.executeQuery();
+        
+        while(rs.next()){
+            photoLabel.setText("<html><p><img src="+ rs.getString("photoString") +" \n" +
+"        width = \"100\" height = \"100\"alt=\"\" /></p></html>");
+        }
+        
             
         } catch (SQLException e) {
             System.out.println(e);
@@ -54,7 +65,8 @@ public class homePanel extends javax.swing.JPanel {
         try {
         initComponents();
         Connection con = DatabaseConnection.getDataSource().getConnection();
-        String sql = "SELECT title, budget, date FROM movago.triptable";
+        String sql = "SELECT title, budget, date, ownerUserName FROM movago.triptable ORDER BY RAND() LIMIT 1";
+
         String warningMessage = "";
         
         PreparedStatement p = con.prepareStatement(sql);
@@ -65,11 +77,20 @@ public class homePanel extends javax.swing.JPanel {
             String title = rs.getString("title");
             double budget = rs.getDouble("budget");
             String date = rs.getString("date");
+            this.ownerUserName = rs.getString("ownerUserName");
             
             // filling textFields with retrieved data
             titleEditable.setText(title);
             budgetEditable.setText(budget + "");
             dateEditable.setText(date);
+        }
+        String photoSQL = "SELECT photoString FROM movago.usertable WHERE username = '"+ownerUserName+"'";
+        p = con.prepareStatement(photoSQL);
+        rs = p.executeQuery();
+        
+        while(rs.next()){
+            photoLabel.setText("<html><p><img src="+ rs.getString("photoString") +" \n" +
+"        width = \"100\" height = \"100\"alt=\"\" /></p></html>");
         }
             
         } catch (SQLException e) {
@@ -95,15 +116,22 @@ public class homePanel extends javax.swing.JPanel {
         titleEditable = new javax.swing.JLabel();
         budgetEditable = new javax.swing.JLabel();
         dateEditable = new javax.swing.JLabel();
+        photoLabel = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
+        createATripButton.setFont(new java.awt.Font("Lato", 1, 14)); // NOI18N
+        createATripButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\Arca\\Belgeler\\NetBeansProjects\\movago\\src\\main\\java\\com\\movago\\img\\Create.png")); // NOI18N
         createATripButton.setText("Create a Trip");
+        createATripButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         createATripButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createATripButtonActionPerformed(evt);
             }
         });
 
+        joinATripButton.setFont(new java.awt.Font("Lato", 1, 14)); // NOI18N
+        joinATripButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\Arca\\Belgeler\\NetBeansProjects\\movago\\src\\main\\java\\com\\movago\\img\\Join.png")); // NOI18N
         joinATripButton.setText("Join a Trip");
         joinATripButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,22 +139,29 @@ public class homePanel extends javax.swing.JPanel {
             }
         });
 
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setFont(new java.awt.Font("PMingLiU-ExtB", 1, 14)); // NOI18N
         jLabel1.setText("Budget: ");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 68, 26));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 68, 26));
 
+        jLabel2.setFont(new java.awt.Font("PMingLiU-ExtB", 1, 14)); // NOI18N
         jLabel2.setText("Title:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 68, 26));
 
+        jLabel3.setFont(new java.awt.Font("PMingLiU-ExtB", 1, 14)); // NOI18N
         jLabel3.setText("Start Date:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 68, 26));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, 68, 26));
         jPanel1.add(titleEditable, new org.netbeans.lib.awtextra.AbsoluteConstraints(153, 38, 403, -1));
         jPanel1.add(budgetEditable, new org.netbeans.lib.awtextra.AbsoluteConstraints(153, 97, 403, -1));
         jPanel1.add(dateEditable, new org.netbeans.lib.awtextra.AbsoluteConstraints(153, 151, 403, -1));
+        jPanel1.add(photoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, 150, 150));
 
-        jLabel4.setText("jLabel4");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, 150, 150));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("OUR CHOICE");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 30));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 220));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -151,7 +186,7 @@ public class homePanel extends javax.swing.JPanel {
                     .addComponent(joinATripButton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -162,7 +197,7 @@ public class homePanel extends javax.swing.JPanel {
 
     private void joinATripButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_joinATripButtonActionPerformed
         MainForm mainForm = FormManager.getMainFormInstance();
-        mainForm.displayForm(new joinATrip(user, mainForm));
+        mainForm.displayForm(new joinATripA(user, mainForm));
     }//GEN-LAST:event_joinATripButtonActionPerformed
 
 
@@ -174,8 +209,10 @@ public class homePanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton joinATripButton;
+    private javax.swing.JLabel photoLabel;
     private javax.swing.JLabel titleEditable;
     // End of variables declaration//GEN-END:variables
 }

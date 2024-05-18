@@ -11,7 +11,6 @@ import com.movago.User;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JTextPane;
 
@@ -119,7 +118,7 @@ public class joinATrip extends javax.swing.JPanel {
                 
                 jButtons.get(i).addActionListener(new java.awt.event.ActionListener() {
                     public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        TripPage tripPage = new TripPage(t,user);
+                        TripPage tripPage = new TripPage(t,user,mainForm);
                         mainForm.displayForm(tripPage);
                         
                     }
@@ -152,7 +151,6 @@ public class joinATrip extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        label1 = new java.awt.Label();
         buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -195,8 +193,6 @@ public class joinATrip extends javax.swing.JPanel {
         budgetField1 = new javax.swing.JTextField();
         budgetField2 = new javax.swing.JTextField();
         applyFilterButton = new javax.swing.JButton();
-
-        label1.setText("label1");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -768,6 +764,5 @@ public class joinATrip extends javax.swing.JPanel {
     private javax.swing.JTextPane jTextPane7;
     private javax.swing.JTextPane jTextPane8;
     private javax.swing.JTextPane jTextPane9;
-    private java.awt.Label label1;
     // End of variables declaration//GEN-END:variables
 }

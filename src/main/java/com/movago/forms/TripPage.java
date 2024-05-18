@@ -4,6 +4,7 @@
  */
 package com.movago.forms;
 
+import com.movago.MainForm;
 import com.movago.Trip;
 import com.movago.User;
 import com.movago.connection.DatabaseConnection;
@@ -24,13 +25,15 @@ public class TripPage extends javax.swing.JPanel {
     String receiverName;
     String receiverBio;
     String receiverPhotoString;
+    MainForm mainform;
     
     /**
      * Creates new form TripPage
      */
-    public TripPage(Trip trip, User user) {
+    public TripPage(Trip trip, User user, MainForm mainForm) {
         this.trip = trip;
         this.user = user;
+        this.mainform = mainForm;
         findReceiverUser(trip);
         
         RatioManager rm = new RatioManager();
@@ -38,8 +41,7 @@ public class TripPage extends javax.swing.JPanel {
 
         
         
-        
-        
+       
         
         
         
@@ -103,17 +105,29 @@ public class TripPage extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
         enrollTrip = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         titleLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titleLabel.setText(trip.getTitle());
 
+        jTextPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.MOVE_CURSOR));
+        jTextPane1.setHighlighter(null);
         jScrollPane1.setViewportView(jTextPane1);
 
         enrollTrip.setFont(new java.awt.Font("Segoe UI", 1, 9)); // NOI18N
+        enrollTrip.setIcon(new javax.swing.ImageIcon("C:\\Users\\Arca\\Belgeler\\NetBeansProjects\\movago\\src\\main\\java\\com\\movago\\img\\Travel Diary.png")); // NOI18N
         enrollTrip.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 enrollTripActionPerformed(evt);
+            }
+        });
+
+        jButton1.setFont(new java.awt.Font("Lato", 1, 12)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Arca\\Belgeler\\NetBeansProjects\\movago\\src\\main\\java\\com\\movago\\img\\People.png")); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -124,23 +138,25 @@ public class TripPage extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 877, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 763, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 648, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(enrollTrip, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(enrollTrip, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 186, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1))
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(enrollTrip, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(enrollTrip, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 489, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -172,7 +188,9 @@ public class TripPage extends javax.swing.JPanel {
                 String sql = "INSERT INTO movago.participant_table (username, triptitle) VALUES ('"+user.getUserName()+"', '"+trip.getTitle()+"')";
                 s.executeUpdate(sql);
                 s.executeUpdate("UPDATE movago.triptable set currentCount = '"+ currentCount +"' WHERE title = '"+trip.getTitle()+"'");
+                enrollTrip.setText(trip.getcurrentCount() + " / " + trip.getParticipantsLimit());
                 JOptionPane.showMessageDialog(jTextPane1, "You enrolled to this trip. Have fun");
+                
             }
             else{
                 JOptionPane.showMessageDialog(jTextPane1, "This trip's capacity is full.");
@@ -185,9 +203,15 @@ public class TripPage extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_enrollTripActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        seeOthersForm smForm = new seeOthersForm(user, trip, mainform);
+        mainform.displayForm(smForm);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton enrollTrip;
+    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextPane jTextPane1;
     private javax.swing.JLabel titleLabel;
